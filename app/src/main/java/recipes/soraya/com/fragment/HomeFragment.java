@@ -14,6 +14,10 @@ import android.view.ViewGroup;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -53,10 +57,17 @@ public class HomeFragment extends Fragment {
                 is.read(buffer);
                 is.close();
                 json = new String(buffer, "UTF-8");
-                HashMap<String,Object> result = new ObjectMapper().readValue(json, HashMap.class);
-                Log.e("JSON", result.size() + "");
+                JSONObject jsonObject = new JSONObject(json);
+                JSONArray jsonArray = jsonObject.getJSONArray("list");
+                
+
+
+//                HashMap<String,Object> result = new ObjectMapper().readValue(json, HashMap.class);
+
             } catch (IOException ex) {
                 ex.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
 
