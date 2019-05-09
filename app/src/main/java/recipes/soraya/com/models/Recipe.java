@@ -1,16 +1,24 @@
 package recipes.soraya.com.models;
 
+import java.util.ArrayList;
+
 public class Recipe {
     private String name;
     private Ingredient ingredient;
+    private ArrayList<String> steps;
+    private ArrayList<String> timers;
     private String imageURL;
     private String originalURL;
 
-    public Recipe(String name, Ingredient ingredient, String imageURL, String originalURL) {
+    public Recipe(String name, Ingredient ingredient, ArrayList<String> steps, ArrayList<String> timers, String imageURL, String originalURL) {
         this.name = name;
         this.ingredient = ingredient;
         this.imageURL = imageURL;
         this.originalURL = originalURL;
+        this.steps = new ArrayList<>();
+        steps.addAll(steps);
+        this.timers = new ArrayList<>();
+        this.timers.addAll(timers);
     }
 
     public String getName() {
@@ -43,5 +51,21 @@ public class Recipe {
 
     public void setOriginalURL(String originalURL) {
         this.originalURL = originalURL;
+    }
+
+    public ArrayList<String> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(ArrayList<String> steps) {
+        this.steps = steps;
+    }
+
+    public ArrayList<String> getTimers() {
+        return timers;
+    }
+
+    public void setTimers(ArrayList<String> timers) {
+        this.timers = timers;
     }
 }
