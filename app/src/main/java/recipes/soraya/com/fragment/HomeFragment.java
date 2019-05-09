@@ -27,12 +27,14 @@ import io.reactivex.Observable;
 import io.reactivex.subjects.Subject;
 import recipes.soraya.com.R;
 import recipes.soraya.com.models.Recipe;
+import recipes.soraya.com.models.RecipeRepository;
 
 public class HomeFragment extends Fragment {
 
 
     private Subject<String> searchTextSubject;
     private Observable<String> onSearchTextChanged;
+    private RecipeRepository recipeRepository;
 
     @Nullable
     @Override
@@ -63,16 +65,11 @@ public class HomeFragment extends Fragment {
                 for(int i = 0 ; i < jsonArray.length() ; i++){
                     JSONObject json_data = jsonArray.getJSONObject(i);
 
-                    String name = json_data.getString("name");
-                    String imageURL = json_data.getString("imageURL");
-                    String originalURL = json_data.getString("originalURL");
-
                     Recipe recipe = new Gson().fromJson(json_data.toString(), Recipe.class);
 
                     Log.e("JSON " + i, recipe.getTimers().toString());
 
                 }
-//                HashMap<String,Object> result = new ObjectMapper().readValue(json, HashMap.class);
 
             } catch (IOException ex) {
                 ex.printStackTrace();
