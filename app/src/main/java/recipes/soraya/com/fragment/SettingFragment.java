@@ -1,4 +1,4 @@
-package recipes.soraya.com;
+package recipes.soraya.com.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import recipes.soraya.com.activity.MainActivity;
+import recipes.soraya.com.R;
 
 public class SettingFragment extends Fragment {
 	

@@ -1,6 +1,5 @@
 package recipes.soraya.com.activity;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,16 +8,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import recipes.soraya.com.*;
+import recipes.soraya.com.R;
+import recipes.soraya.com.fragment.FavFragment;
+import recipes.soraya.com.fragment.HomeFragment;
+import recipes.soraya.com.fragment.SettingFragment;
 
-import java.util.*;
 
 public class SigninActivity extends AppCompatActivity {
 	
 	private RecyclerView recyclerView;
 	private GridLayoutManager gridLayoutManager;
-	//private CustomAdapter adapter;
-	private List<MyData> dataList;
+	
 	
 	
 	
@@ -31,30 +31,11 @@ public class SigninActivity extends AppCompatActivity {
 		bottomNav.setOnNavigationItemSelectedListener(navListener);
 		
 		//I added this if statement to keep the selected fragment when rotating the device
-		        if (savedInstanceState == null) {
-			        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-		        }
-		        
-		        //recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
-		        dataList = new ArrayList<>();
-		        load_data_from_server(0);
+		if (savedInstanceState == null) {
+			getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+		}
 	}
 	
-	private void load_data_from_server(int id) {
-		AsyncTask<Integer, Void, Void> task = new AsyncTask<Integer, Void, Void>() {
-			@Override
-			protected Void doInBackground(Integer... integers) {
-				
-				return null;
-			}
-			
-			@Override
-			protected void onPostExecute(Void aVoid) {
-				super.onPostExecute(aVoid);
-			}
-		};
-		task.execute(id);
-	}
 	
 	private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
