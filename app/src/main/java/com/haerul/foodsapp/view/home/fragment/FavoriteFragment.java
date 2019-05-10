@@ -9,12 +9,15 @@ package com.haerul.foodsapp.view.home.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.google.firebase.database.*;
+import butterknife.BindView;
 import com.haerul.foodsapp.R;
 import com.haerul.foodsapp.adapter.RecyclerViewFavorite;
 import com.haerul.foodsapp.model.FavoriteRepository;
@@ -23,11 +26,15 @@ import java.util.*;
 
 public class FavoriteFragment extends Fragment implements Observer {
 	
+	@BindView(R.id.toolbar)
+	Toolbar toolbar;
+	@BindView(R.id.tabLayout)
+	TabLayout tabLayout;
+	@BindView(R.id.viewPager)
+	ViewPager viewPager;
+	
 		FavoriteRepository favoriteRepository = FavoriteRepository.getInstance();
-		FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-		DatabaseReference mRef = mFirebaseDatabase.getReference();
 		RecyclerViewFavorite recyclerViewFav;
-		
 		private RecyclerView favFromDB;
 		
 		
@@ -39,14 +46,12 @@ public class FavoriteFragment extends Fragment implements Observer {
 			
 			favoriteRepository.getFavoriteList();
 			
-			//RecyclerView
-			favFromDB = v.findViewById(R.id.favfromDB);
-			favFromDB.setHasFixedSize(true);
-			favFromDB.setAdapter(recyclerViewFav);
+			
+			
 			
 			return v;
 		}
-	
+		
 	@Override
 	public void update(Observable observable, Object o) {
 	
