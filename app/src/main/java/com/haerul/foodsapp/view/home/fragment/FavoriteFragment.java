@@ -14,16 +14,22 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.*;
 import com.haerul.foodsapp.R;
+import com.haerul.foodsapp.adapter.RecyclerViewFavorite;
 import com.haerul.foodsapp.model.FavoriteRepository;
 
-public class FavoriteFragment extends Fragment {
-	private FavoriteRepository favoriteRepository;
-		private RecyclerView mRecyclerView;
-		FirebaseDatabase mFirebaseDatabase;
-		DatabaseReference mRef;
+import java.util.*;
+
+public class FavoriteFragment extends Fragment implements Observer {
+	
+		FavoriteRepository favoriteRepository = FavoriteRepository.getInstance();
+		FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+		DatabaseReference mRef = mFirebaseDatabase.getReference();
+		RecyclerViewFavorite recyclerViewFav;
+		
+		private RecyclerView favFromDB;
+		
 		
 		@Nullable
 			@Override
@@ -31,19 +37,19 @@ public class FavoriteFragment extends Fragment {
 			
 			View v = inflater.inflate(R.layout.fragment_fav, container, false);
 			
-			//RecyclerView
-			mRecyclerView = v.findViewById(R.id.favfromDB);
-			mRecyclerView.setHasFixedSize(true);
+			favoriteRepository.getFavoriteList();
 			
-			fetch();
+			//RecyclerView
+			favFromDB = v.findViewById(R.id.favfromDB);
+			favFromDB.setHasFixedSize(true);
+			favFromDB.setAdapter(recyclerViewFav);
 			
 			return v;
 		}
-			
-			private void fetch() {
-			
-			favoriteRepository.getInstance();
-			
-			
-			}
+	
+	@Override
+	public void update(Observable observable, Object o) {
+	
+	
+	}
 }
