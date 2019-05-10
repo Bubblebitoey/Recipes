@@ -8,6 +8,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:428440045322:android:f0c858d14e51c4ed",
+        "android_client_info": {
+          "package_name": "com.haerul.foodsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428440045322-5g295j75c980ajq16m7hhpc728kopkep.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.haerul.foodsapp",
+            "certificate_hash": "b63fb90f7ec0605dd135e53b4abb56e236aeb4c8"
+          }
+        },
+        {
+          "client_id": "428440045322-mfmuhebua4v80fg6pin83qv7664d29fc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6WJWCf_Oxrow6J1Ltesu__QLYCLIwBi8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428440045322-mfmuhebua4v80fg6pin83qv7664d29fc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:428440045322:android:b7decee70ca54864",
         "android_client_info": {
           "package_name": "recipes.soraya.com"
@@ -19,6 +56,43 @@
           "client_type": 1,
           "android_info": {
             "package_name": "recipes.soraya.com",
+            "certificate_hash": "b63fb90f7ec0605dd135e53b4abb56e236aeb4c8"
+          }
+        },
+        {
+          "client_id": "428440045322-mfmuhebua4v80fg6pin83qv7664d29fc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6WJWCf_Oxrow6J1Ltesu__QLYCLIwBi8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428440045322-mfmuhebua4v80fg6pin83qv7664d29fc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428440045322:android:c9eeb02215a9918e",
+        "android_client_info": {
+          "package_name": "recipes.soraya.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428440045322-587fvheh2fmnqsh4c1608g2e7h3scobs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "recipes.soraya.myapplication",
             "certificate_hash": "b63fb90f7ec0605dd135e53b4abb56e236aeb4c8"
           }
         },
