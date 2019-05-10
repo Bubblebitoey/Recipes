@@ -1,0 +1,15 @@
+<!--
+  Developed by Haerul Muttaqin
+  Last modified 5/10/19 3:49 PM
+  Subscribe : https://www.youtube.com/haerulmuttaqin
+  Copyright (c) 2019. All rights reserved
+  -->
+
+<resources>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+</resources>
