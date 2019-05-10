@@ -27,14 +27,18 @@ import com.haerul.foodsapp.model.FavoriteRepository;
 import com.haerul.foodsapp.model.Meals;
 import com.squareup.picasso.Picasso;
 
+import java.util.*;
+
 import static com.haerul.foodsapp.view.home.HomeActivity.EXTRA_DETAIL;
+import static com.haerul.foodsapp.view.home.HomeActivity.EXTRA_POSITION;
 
 
-public class DetailActivity extends AppCompatActivity implements DetailView{ //TODO #11  implement DetailView
+public class DetailActivity extends AppCompatActivity implements DetailView { //TODO #11  implement DetailView
     
-    private FavoriteRepository favoriteRepository;
-
-
+    private FavoriteRepository favoriteRepository = FavoriteRepository.getInstance();
+    private List<Meals.Meal> meals = new ArrayList<>();
+    
+    
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -71,6 +75,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView{ //T
     @BindView(R.id.source)
     TextView source;
     
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,12 +87,24 @@ public class DetailActivity extends AppCompatActivity implements DetailView{ //T
         //TODO #9 Get data from the intent
         Intent intent = getIntent();
         String mealName = intent.getStringExtra(EXTRA_DETAIL);
+        intent.getSerializableExtra("putObjMeal");
 
         //TODO #10 Declare the presenter (put the name of the meal name from the data intent to the presenter)
         DetailPresenter presenter = new DetailPresenter(this);
         presenter.getMealById(mealName);
         
+        //int position = intent.getIntExtra(EXTRA_POSITION, 0);
+       
         
+        /**
+        view.findViewById(R.id.favorite).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                favoriteRepository.addToFavoriteList(meals.get(position));
+                showMessage("Sucessfully added favorite.");
+            }
+        });
+       */
     }
 
     private void setupActionBar() {
@@ -117,6 +134,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView{ //T
         });
     }
 
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_detail, menu);
@@ -136,6 +154,11 @@ public class DetailActivity extends AppCompatActivity implements DetailView{ //T
                 return true;
             case R.id.favorite:
                 // work that will start when you click on this
+                
+                 Intent intent = getIntent();
+                 int position = intent.getIntExtra(EXTRA_POSITION, 0);
+                favoriteRepository.addToFavoriteList(meals.get(position));
+                 
                 showMessage("Successfully added to favorite.");
             default:
                 return super.onOptionsItemSelected(item);

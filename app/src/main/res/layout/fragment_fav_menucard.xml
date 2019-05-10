@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:background="@color/colorPrimary"
+             tools:context=".view.home.fragment.FavoriteFragment">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:id="@+id/textWelcomeUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:maxLines="7"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"
+                    android:text="Let's see your favorite recipes !"
+                    android:layout_marginTop="10dp"/>
+
+            <android.support.v7.widget.RecyclerView
+                            android:id="@+id/favfromDB"
+                            android:layout_marginTop="10dp"
+                            android:paddingLeft="10dp"
+                            android:layout_below="@+id/textWelcomeUser"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                        <ProgressBar
+                                android:id="@+id/loadProgressBar"
+                                android:layout_below="@+id/textWelcomeUser"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+
+
+
+</FrameLayout>

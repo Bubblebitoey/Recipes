@@ -17,8 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 import com.haerul.foodsapp.R;
 import com.haerul.foodsapp.model.FavoriteRepository;
 import com.haerul.foodsapp.model.Meals;
@@ -32,10 +30,6 @@ public class RecyclerViewMealByCategory extends RecyclerView.Adapter<RecyclerVie
     private Context context;
     private static ClickListener clickListener;
     private View view;
-    
-    
-    private FirebaseAuth mAuth;
-    private FirebaseDatabase firebaseDatabase;
     private FavoriteRepository favoriteRepository;
 
     public RecyclerViewMealByCategory(Context context, List<Meals.Meal> meals) {

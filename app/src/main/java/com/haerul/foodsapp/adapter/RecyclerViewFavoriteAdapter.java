@@ -13,30 +13,43 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.haerul.foodsapp.R;
 import com.haerul.foodsapp.model.FavoriteRepository;
+import com.haerul.foodsapp.model.Meals;
+import com.squareup.picasso.Picasso;
 
-public class RecyclerViewFavorite extends RecyclerView.Adapter<RecyclerViewFavorite.RecyclerViewHolder> {
+import java.util.*;
+
+public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerViewFavoriteAdapter.RecyclerViewHolder> {
 	
    
 	private static ClickListener clickListener;
-	private FavoriteRepository favoriteRepository = FavoriteRepository.getInstance();
+	private FavoriteRepository favoriteRepository;
 	private Context context;
 	private View view;
+	
+	public RecyclerViewFavoriteAdapter(Context context, ArrayList<Meals.Meal> favList) {
+	        this.context = context;
+	        this.favoriteRepository = FavoriteRepository.getInstance();
+	    }
 	
 	
 	@NonNull
 	@Override
-	public RecyclerViewFavorite.RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-		view = LayoutInflater.from(context).inflate(R.layout.item_recycler_meal,
-				
-				viewGroup, false);
-		
+	public RecyclerViewFavoriteAdapter.RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+		view = LayoutInflater.from(context).inflate(R.layout.fragment_fav_recycler_meal, viewGroup, false);
 		return new RecyclerViewHolder(view);
 	}
 	
 	@Override
-	public void onBindViewHolder(@NonNull RecyclerViewFavorite.RecyclerViewHolder recyclerViewHolder, int position) {
-		favoriteRepository.getFavoriteList().get(position);
+	public void onBindViewHolder(@NonNull RecyclerViewFavoriteAdapter.RecyclerViewHolder recyclerViewHolder, int position) {
 		
+		
+		//TODO: bind favList into viewHolder
+		String strMealThumb = favoriteRepository.getFavoriteList().get(position).getStrMealThumb();
+		Picasso.get().load(strMealThumb).placeholder(R.drawable.shadow_bottom_to_top).into(recyclerViewHolder.mealThumb);
+		
+		String strMealName = favoriteRepository.getFavoriteList().get(position).getStrMeal();
+		recyclerViewHolder.mealName.setText(strMealName);
+	 
 		view.findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
 	            @Override
 	            public void onClick(View view) {
@@ -72,7 +85,7 @@ public class RecyclerViewFavorite extends RecyclerView.Adapter<RecyclerViewFavor
 	}
 		
 		public void setOnItemListener(ClickListener clickListener) {
-			RecyclerViewFavorite.clickListener = clickListener;
+			RecyclerViewFavoriteAdapter.clickListener = clickListener;
 		}
 		
 		public interface ClickListener {

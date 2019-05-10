@@ -14,7 +14,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +37,7 @@ import com.squareup.picasso.Picasso;
 import java.util.*;
 
 import static com.haerul.foodsapp.view.home.HomeActivity.EXTRA_DETAIL;
+import static com.haerul.foodsapp.view.home.HomeActivity.EXTRA_POSITION;
 
 public class CategoryFragment extends Fragment implements CategoryView, Observer {
 	
@@ -58,6 +58,7 @@ public class CategoryFragment extends Fragment implements CategoryView, Observer
 	private FirebaseAuth mAuth;
 	private FirebaseDatabase firebaseDatabase;
 	private DatabaseReference databaseReference;
+	
 	
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -112,6 +113,9 @@ public class CategoryFragment extends Fragment implements CategoryView, Observer
 			TextView mealName = view.findViewById(R.id.mealName);
 			Intent intent = new Intent(getActivity(), DetailActivity.class);
 			intent.putExtra(EXTRA_DETAIL, mealName.getText().toString());
+			
+			intent.putExtra(EXTRA_POSITION, position);
+			
 			startActivity(intent);
 		});
 	}

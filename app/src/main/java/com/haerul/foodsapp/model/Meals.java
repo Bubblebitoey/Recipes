@@ -9,10 +9,11 @@ package com.haerul.foodsapp.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Meals {
-
+public class Meals implements Serializable {
+    
     @SerializedName("meals")
     @Expose
     private List<Meal> meals = null;
@@ -29,7 +30,7 @@ public class Meals {
     }
 
     
-    public static class Meal {
+    public static class Meal implements Serializable{
         @SerializedName("idMeal")
         @Expose
         private String idMeal;
