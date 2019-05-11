@@ -38,10 +38,6 @@ public class CategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category);
         //TODO 5. Bind ButterKnife
 	    ButterKnife.bind(this);
-	    
-	    
-
-        initActionBar();
         
         //TODO 9. Init getIntent() data from home activity
 	    initActionBar();

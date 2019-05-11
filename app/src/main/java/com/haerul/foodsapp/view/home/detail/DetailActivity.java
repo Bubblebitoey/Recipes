@@ -27,14 +27,17 @@ import com.haerul.foodsapp.model.FavoriteRepository;
 import com.haerul.foodsapp.model.Meals;
 import com.squareup.picasso.Picasso;
 
+import java.util.*;
+
 import static com.haerul.foodsapp.view.home.HomeActivity.EXTRA_DETAIL;
+import static com.haerul.foodsapp.view.home.HomeActivity.EXTRA_POSITION;
 
 
-public class DetailActivity extends AppCompatActivity implements DetailView{ //TODO #11  implement DetailView
+public class DetailActivity extends AppCompatActivity implements DetailView { //TODO #11  implement DetailView
     
-    private FavoriteRepository favoriteRepository;
-
-
+    private FavoriteRepository favoriteRepository = FavoriteRepository.getInstance();
+    
+    
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -70,6 +73,8 @@ public class DetailActivity extends AppCompatActivity implements DetailView{ //T
     
     @BindView(R.id.source)
     TextView source;
+
+    private Meals.Meal currentMeal;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,12 +87,24 @@ public class DetailActivity extends AppCompatActivity implements DetailView{ //T
         //TODO #9 Get data from the intent
         Intent intent = getIntent();
         String mealName = intent.getStringExtra(EXTRA_DETAIL);
+        intent.getSerializableExtra("putObjMeal");
 
         //TODO #10 Declare the presenter (put the name of the meal name from the data intent to the presenter)
         DetailPresenter presenter = new DetailPresenter(this);
         presenter.getMealById(mealName);
         
+        //int position = intent.getIntExtra(EXTRA_POSITION, 0);
+       
         
+        /**
+        view.findViewById(R.id.favorite).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                favoriteRepository.addToFavoriteList(meals.get(position));
+                showMessage("Sucessfully added favorite.");
+            }
+        });
+       */
     }
 
     private void setupActionBar() {
@@ -117,30 +134,27 @@ public class DetailActivity extends AppCompatActivity implements DetailView{ //T
         });
     }
 
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_detail, menu);
         
         MenuItem favoriteItem = menu.findItem(R.id.favorite);
+        favoriteItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int response = favoriteRepository.addToFavoriteList(currentMeal);
+                if(response == 1) {
+                    showMessage("Sucessfully added to Favorite.");
+                } else if ( response == 0 ) {
+                    showMessage("Already added to Favorite.");
+                }
+                return false;
+            }
+        });
         Drawable favoriteItemColor = favoriteItem.getIcon();
         setupColorActionBarIcon(favoriteItemColor);
         return true;
-    }
-   
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home :
-                onBackPressed();
-                return true;
-            case R.id.favorite:
-                // work that will start when you click on this
-                showMessage("Successfully added to favorite.");
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        
     }
     
     @Override
@@ -156,7 +170,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView{ //T
     @Override
     public void setMeals(Meals.Meal meal) {
         Log.d("TAG",meal.getStrMeal());
-        
+        currentMeal = meal;
         Picasso.get().load(meal.getStrMealThumb()).into(mealThumb);
                 collapsingToolbarLayout.setTitle(meal.getStrMeal());
                 category.setText(meal.getStrCategory());

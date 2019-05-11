@@ -18,8 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 import com.haerul.foodsapp.R;
 import com.haerul.foodsapp.model.FavoriteRepository;
 import com.haerul.foodsapp.model.Meals;
@@ -33,10 +31,6 @@ public class RecyclerViewMealByCategory extends RecyclerView.Adapter<RecyclerVie
     private Context context;
     private static ClickListener clickListener;
     private View view;
-    
-    
-    private FirebaseAuth mAuth;
-    private FirebaseDatabase firebaseDatabase;
     private FavoriteRepository favoriteRepository;
 
     public RecyclerViewMealByCategory(Context context, List<Meals.Meal> meals) {
@@ -67,8 +61,12 @@ public class RecyclerViewMealByCategory extends RecyclerView.Adapter<RecyclerVie
         view.findViewById(R.id.love).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                favoriteRepository.addToFavoriteList(meals.get(i));
-                showMessage("Sucessfully added favorite.");
+                int response = favoriteRepository.addToFavoriteList(meals.get(i));
+                if(response == 1) {
+                    showMessage("Sucessfully added to Favorite.");
+                } else if ( response == 0 ) {
+                    showMessage("Already added to Favorite.");
+                }
             }
         });
     }
@@ -92,6 +90,7 @@ public class RecyclerViewMealByCategory extends RecyclerView.Adapter<RecyclerVie
 
         @Override
         public void onClick(View v) {
+            
             clickListener.onClick(v, getAdapterPosition());
         }
     }
