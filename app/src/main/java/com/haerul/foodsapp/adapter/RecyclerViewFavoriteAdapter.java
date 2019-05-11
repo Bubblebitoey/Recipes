@@ -3,6 +3,7 @@ package com.haerul.foodsapp.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,8 +44,8 @@ public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewFavoriteAdapter.RecyclerViewHolder recyclerViewHolder, int position) {
-
-
+        Log.e("TEST_FAV", "" + position);
+        if(favoriteRepository.getFavoriteList().size() == 0) { return;}
         //TODO: bind favList into viewHolder
         String strMealThumb = favoriteRepository.getFavoriteList().get(position).getStrMealThumb();
         Picasso.get().load(strMealThumb).placeholder(R.drawable.shadow_bottom_to_top).into(recyclerViewHolder.mealThumb);

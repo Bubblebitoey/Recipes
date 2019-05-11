@@ -52,7 +52,6 @@ public class FavoriteFragment extends Fragment implements Observer {
 
 
     FavoriteRepository favoriteRepository = FavoriteRepository.getInstance();
-    RecyclerViewFavoriteAdapter adapter;
     public static final String EXTRA_POSITION = "position";
 
 
@@ -70,7 +69,7 @@ public class FavoriteFragment extends Fragment implements Observer {
     }
 
     public void loadFavoriteList() {
-        adapter = new RecyclerViewFavoriteAdapter(getActivity());
+        RecyclerViewFavoriteAdapter adapter = new RecyclerViewFavoriteAdapter(getActivity());
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerView.setClipToPadding(false);
         recyclerView.setAdapter(adapter);
@@ -91,17 +90,38 @@ public class FavoriteFragment extends Fragment implements Observer {
     }
 
 
+    public void updateAdapter() {
+        RecyclerViewFavoriteAdapter adapter = new RecyclerViewFavoriteAdapter(getActivity());
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        adapter.setOnItemListener(new RecyclerViewFavoriteAdapter.ClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra(EXTRA_DETAIL, favoriteRepository.getFavoriteList().get(position).getStrMeal());
+
+                intent.putExtra(EXTRA_POSITION, position);
+
+                startActivity(intent);
+            }
+        });
+    }
+
 
     @Override
     public void update(Observable observable, Object o) {
         //TODO: Don't know what to update
+        String[] array = o.toString().split(" ");
 
-
+        if (array[0].equals("remove")) {
+            updateAdapter();
+        }
     }
+}
 
-    ;
 
-    //TODO: I try to setData from favoriteList
+
+//TODO: I try to setData from favoriteList
 //	@Override
 //	public void setMeals(ArrayList<Meals.Meal> favList) {
 //			favoriteRepository = FavoriteRepository.getInstance();
@@ -126,4 +146,4 @@ public class FavoriteFragment extends Fragment implements Observer {
 //	public void onErrorLoading(String message) {
 //		Utils.showDialogMessage(getActivity(), "Error ", message);
 //	}
-}
+

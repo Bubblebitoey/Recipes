@@ -35,20 +35,22 @@ public class FavoriteRepository extends Observable {
 	}
 	
 	public void addToFavoriteList(Meals.Meal meal) {
+		if(meal == null) { return ; }
 		for(Meals.Meal m : this.favoriteList) {
-			if(m.getIdMeal().equals(meal.getIdMeal())) {
+			if (m.getStrMeal().equals(meal.getStrMeal())) {
 				return;
 			}
 		}
 		this.favoriteList.add(meal);
+		int index = this.favoriteList.indexOf(meal);
 		setChanged();
-		notifyObservers("add");
+		notifyObservers("add " + index);
 	}
 	
 	public void removeFromFavoriteList(Meals.Meal meal) {
-		int index = this.favoriteList.indexOf(meal);
+		String id = meal.getIdMeal();
 		this.favoriteList.remove(meal);
 		setChanged();
-		notifyObservers(index);
+		notifyObservers("remove " + id);
 	}
 }

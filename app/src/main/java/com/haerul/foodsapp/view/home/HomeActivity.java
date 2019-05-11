@@ -110,12 +110,14 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                GenericTypeIndicator<ArrayList<Meals.Meal>> genericTypeIndicator = new GenericTypeIndicator<ArrayList<Meals.Meal>>() {};
-                ArrayList<Meals.Meal> meals = dataSnapshot.getValue(genericTypeIndicator);
-                if(meals != null) {
-                    for(Meals.Meal m : meals) {
+                GenericTypeIndicator<HashMap<String, Meals.Meal>> genericTypeIndicator = new GenericTypeIndicator<HashMap<String, Meals.Meal>>() {};
+                Map<String, Meals.Meal> meals = dataSnapshot.getValue(genericTypeIndicator);
+                if(meals != null && meals.size() != favoriteRepository.getFavoriteList().size()) {
+                    for (Meals.Meal m : meals.values()) {
+                        if(favoriteRepository.getFavoriteList().contains(m)) {continue;}
                         favoriteRepository.getFavoriteList().add(m);
                     }
+
                 }
 
 

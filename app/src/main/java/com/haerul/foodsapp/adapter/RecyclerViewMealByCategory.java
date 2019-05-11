@@ -9,6 +9,7 @@ package com.haerul.foodsapp.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,7 @@ public class RecyclerViewMealByCategory extends RecyclerView.Adapter<RecyclerVie
         view.findViewById(R.id.love).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.e("TEST_ADD_FAV", meals.get(i).getStrMeal());
                 favoriteRepository.addToFavoriteList(meals.get(i));
                 showMessage("Sucessfully added favorite.");
             }
