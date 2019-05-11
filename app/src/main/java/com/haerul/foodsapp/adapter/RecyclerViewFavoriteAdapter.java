@@ -44,7 +44,6 @@ public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewFavoriteAdapter.RecyclerViewHolder recyclerViewHolder, int position) {
-        Log.e("TEST_FAV", "" + position);
         if(favoriteRepository.getFavoriteList().size() == 0) { return;}
         //TODO: bind favList into viewHolder
         String strMealThumb = favoriteRepository.getFavoriteList().get(position).getStrMealThumb();

@@ -118,32 +118,3 @@ public class FavoriteFragment extends Fragment implements Observer {
         }
     }
 }
-
-
-
-//TODO: I try to setData from favoriteList
-//	@Override
-//	public void setMeals(ArrayList<Meals.Meal> favList) {
-//			favoriteRepository = FavoriteRepository.getInstance();
-//		RecyclerViewFavoriteAdapter adapter = new RecyclerViewFavoriteAdapter(getActivity(),favoriteRepository.getFavoriteList() );
-//		recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-//		recyclerView.setClipToPadding(false);
-//		recyclerView.setAdapter(adapter);
-//		adapter.notifyDataSetChanged();
-//
-//		adapter.setOnItemListener((view, position) -> {
-//
-//			TextView mealName = view.findViewById(R.id.mealName);
-//			Intent intent = new Intent(getActivity(), DetailActivity.class);
-//			intent.putExtra(EXTRA_DETAIL, mealName.getText().toString());
-//			intent.putExtra(EXTRA_POSITION, position);
-//
-//			startActivity(intent);
-//		});
-//	}
-//
-//	@Override
-//	public void onErrorLoading(String message) {
-//		Utils.showDialogMessage(getActivity(), "Error ", message);
-//	}
-

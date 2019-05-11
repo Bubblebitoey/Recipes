@@ -61,9 +61,12 @@ public class RecyclerViewMealByCategory extends RecyclerView.Adapter<RecyclerVie
         view.findViewById(R.id.love).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("TEST_ADD_FAV", meals.get(i).getStrMeal());
-                favoriteRepository.addToFavoriteList(meals.get(i));
-                showMessage("Sucessfully added favorite.");
+                int response = favoriteRepository.addToFavoriteList(meals.get(i));
+                if(response == 1) {
+                    showMessage("Sucessfully added to Favorite.");
+                } else if ( response == 0 ) {
+                    showMessage("Already added to Favorite.");
+                }
             }
         });
     }

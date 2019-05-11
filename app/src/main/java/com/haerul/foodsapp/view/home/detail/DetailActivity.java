@@ -36,7 +36,6 @@ import static com.haerul.foodsapp.view.home.HomeActivity.EXTRA_POSITION;
 public class DetailActivity extends AppCompatActivity implements DetailView { //TODO #11  implement DetailView
     
     private FavoriteRepository favoriteRepository = FavoriteRepository.getInstance();
-    private List<Meals.Meal> meals = new ArrayList<>();
     
     
     @BindView(R.id.toolbar)
@@ -74,7 +73,8 @@ public class DetailActivity extends AppCompatActivity implements DetailView { //
     
     @BindView(R.id.source)
     TextView source;
-    
+
+    private Meals.Meal currentMeal;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,30 +140,21 @@ public class DetailActivity extends AppCompatActivity implements DetailView { //
         getMenuInflater().inflate(R.menu.menu_detail, menu);
         
         MenuItem favoriteItem = menu.findItem(R.id.favorite);
+        favoriteItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int response = favoriteRepository.addToFavoriteList(currentMeal);
+                if(response == 1) {
+                    showMessage("Sucessfully added to Favorite.");
+                } else if ( response == 0 ) {
+                    showMessage("Already added to Favorite.");
+                }
+                return false;
+            }
+        });
         Drawable favoriteItemColor = favoriteItem.getIcon();
         setupColorActionBarIcon(favoriteItemColor);
         return true;
-    }
-   
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home :
-                onBackPressed();
-                return true;
-            case R.id.favorite:
-                // work that will start when you click on this
-                
-                 Intent intent = getIntent();
-                 int position = intent.getIntExtra(EXTRA_POSITION, 0);
-                favoriteRepository.addToFavoriteList(meals.get(position));
-                 
-                showMessage("Successfully added to favorite.");
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        
     }
     
     @Override
@@ -179,7 +170,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView { //
     @Override
     public void setMeals(Meals.Meal meal) {
         Log.d("TAG",meal.getStrMeal());
-        
+        currentMeal = meal;
         Picasso.get().load(meal.getStrMealThumb()).into(mealThumb);
                 collapsingToolbarLayout.setTitle(meal.getStrMeal());
                 category.setText(meal.getStrCategory());
