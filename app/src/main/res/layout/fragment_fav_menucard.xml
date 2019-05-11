@@ -35,13 +35,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
 
-                        <ProgressBar
-                                android:id="@+id/loadProgressBar"
-                                android:layout_below="@+id/textWelcomeUser"
-                                android:layout_centerHorizontal="true"
-                                android:layout_marginTop="20dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
         </RelativeLayout>
 
 
