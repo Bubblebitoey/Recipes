@@ -1,9 +1,4 @@
-/*-----------------------------------------------------------------------------
- - Developed by Haerul Muttaqin                                               -
- - Last modified 5/10/19 4:19 PM                                              -
- - Subscribe : https://www.youtube.com/haerulmuttaqin                         -
- - Copyright (c) 2019. All rights reserved                                    -
- -----------------------------------------------------------------------------*/
+
 package com.soraya.recipes.view.home;
 
 import android.os.Bundle;

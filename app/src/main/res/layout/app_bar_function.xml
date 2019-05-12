@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  Developed by Haerul Muttaqin
-  Last modified 5/10/19 3:49 PM
-  Subscribe : https://www.youtube.com/haerulmuttaqin
-  Copyright (c) 2019. All rights reserved
-  -->
-
 <android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".FunctionActivity">
+        tools:context="com.soraya.recipes.view.home.FunctionActivity">
 
     <android.support.design.widget.AppBarLayout
             android:layout_height="wrap_content"

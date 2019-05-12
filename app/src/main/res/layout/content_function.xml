@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  Developed by Haerul Muttaqin
-  Last modified 5/10/19 3:49 PM
-  Subscribe : https://www.youtube.com/haerulmuttaqin
-  Copyright (c) 2019. All rights reserved
-  -->
-
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -14,6 +7,6 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/app_bar_function"
-        tools:context=".FunctionActivity">
+        tools:context="com.soraya.recipes.view.home.FunctionActivity">
 
 </android.support.constraint.ConstraintLayout>
