@@ -33,6 +33,7 @@ import static com.soraya.recipes.view.home.HomeActivity.EXTRA_DETAIL;
 public class DetailActivity extends AppCompatActivity implements DetailView { //TODO #11  implement DetailView
     
     private FavoriteRepository favoriteRepository = FavoriteRepository.getInstance();
+    private Meals.Meal currentMeal;
     
     
     @BindView(R.id.toolbar)
@@ -70,8 +71,6 @@ public class DetailActivity extends AppCompatActivity implements DetailView { //
     
     @BindView(R.id.source)
     TextView source;
-
-    private Meals.Meal currentMeal;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {

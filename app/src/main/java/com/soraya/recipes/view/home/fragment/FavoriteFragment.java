@@ -92,7 +92,6 @@ public class FavoriteFragment extends Fragment implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        //TODO: Don't know what to update
         String[] array = o.toString().split(" ");
 
         if (array[0].equals("remove")) {
